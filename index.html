@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      href="resources/favicon.ico"
+      type="image/x-icon"
+      sizes="96x96"
+    />
+
+    <title>Flip the coin | devChallenges.io</title>
+
+    <!--You are welcome to delete these styles or modify them in your own stylesheet -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        height: 100vh;
+        min-height: fit-content;
+        font-family: "Kanit" , sans-serif , "Poppins", "Be Vietnam Pro";
+        font-weight: 600;
+        background-color: #404A65;
+        color: #ECEDF0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 60px;
+        padding: 40px 20px;
+      }
+      /*header styling*/
+      header{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      header h1{
+        /* Heading Text Shadow */
+        text-shadow: 2px 2px 0px #35383f;
+        -webkit-text-stroke-width: 5px;
+        -webkit-text-stroke-color: #35383f;
+        color: #ECEDF0;
+        font-size: 64px;
+        font-weight: 800;
+      }
+      header p{
+        font-size: 24px;
+      }
+
+      /*main styling*/
+      main{
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+      }
+
+      .imgContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+      }
+
+      /*Image Animation*/
+
+      @keyframes imgAnimation{
+        0%{
+          transform:rotateY(0);
+        }
+        100%{
+          transform: rotateY(360deg);
+        }
+      }
+
+      #section_one{
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+      }
+      #section_one p{
+        font-size: 24px;
+      }
+
+      #btn{
+        background-color: #1F6FB0;
+        color: #ECEDF0;
+        border: transparent;
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: 600;
+        padding: 12px 40px;
+        border-radius: 10px;
+        /* Button Shadow */
+        box-shadow: 0px 4px 0px 0px #23649b;
+        cursor: pointer;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+    Press the coin or the button to flip the coin
+    Head
+    Tail
+    Random
+  -->
+    <header>
+      <h1>Flip the coin</h1>
+      <p>Press the coin or the button to flip the coin</p>
+    </header>
+    <main>
+      <section id="section_one">
+        <div class="imgContainer">
+          <img src="resources/heads.svg" alt="heads" width="160" height="160" id="img">
+          <img src="resources/shadow.svg" alt="shadow" width="100" height="8">
+        </div>
+        <p id="paragraph">Heads</p>
+      </section>
+      <section>
+        <button id="btn">Random</button>
+      </section>
+    </main>
+  </body>
+  <script>
+    let img = document.getElementById('img');
+    let button = document.getElementById('btn');
+    let paragraph = document.getElementById('paragraph');
+    
+    button.onclick = function(){
+      img.style.animation ="none";
+      img.offsetHeight;     //force reflow
+      img.style.animation = "imgAnimation 0.3s linear 2 forwards";
+      const result = Math.random() < 0.5 ? "Heads" : "Tails";
+      //when the image stop flipping (the animation ends) the text will change.
+      img.addEventListener("animationend",()=>paragraph.textContent = result); 
+      if(result == "Tails"){
+        img.src = "resources/tails.svg";
+      }
+      else{
+        img.src = "resources/heads.svg";
+      }
+    }
+  </script>
+</html>
