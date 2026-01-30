@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <meta name="description" content="a coin flipping game">
     <link
       rel="icon"
       href="resources/favicon.ico"
@@ -67,7 +67,9 @@
         align-items: center;
         gap: 40px;
       }
-
+      img{
+        cursor: pointer;
+      }
       /*Image Animation*/
 
       @keyframes imgAnimation{
@@ -133,7 +135,7 @@
     let button = document.getElementById('btn');
     let paragraph = document.getElementById('paragraph');
     
-    button.onclick = function(){
+      playGame = function(){
       img.style.animation ="none";
       img.offsetHeight;     //force reflow
       img.style.animation = "imgAnimation 0.3s linear 2 forwards";
@@ -147,5 +149,7 @@
         img.src = "resources/heads.svg";
       }
     }
+    button.addEventListener("click", playGame);
+    img.addEventListener("click", playGame);
   </script>
 </html>
